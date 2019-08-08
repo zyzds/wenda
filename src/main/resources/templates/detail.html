@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="js  is-AppPromotionBarVisible cssanimations csstransforms csstransitions flexbox no-touchevents no-mobile"
+      dropeffect="none"
+      lang="zh-CN"
+      style="" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-ZA-Response-Id" content="46acde5c53db46f2806ccad726de9826">
+    <title>首页 - 问答</title>
+    <meta name="apple-itunes-app" content="app-id=432274380">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="mobile-agent" content="format=html5;url=https://nowcoder.com/">
+    <meta id="znonce" name="znonce" content="d3edc464cf014708819feffde7ddd01e">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://nowcoder.com/static/search.xml"
+          title="牛客">
+    <link rel="stylesheet" type="text/css" href="/styles/bootstrap.min.css">
+    <style>
+        .zm-item-answer-author-info a.collapse {
+            margin-top: 0
+        }
+    </style>
+    <link href="../styles/detail.css" rel="stylesheet">
+</head>
+
+<body class="zhi ">
+<div th:insert="header.html"></div>
+<div class="zu-global-notify" id="zh-global-message" style="display:none">
+    <div class="zg-wrap">
+        <div class="zu-global-nitify-inner">
+            <a class="zu-global-notify-close" href="javascript:" name="close" title="关闭">x</a>
+            <span class="zu-global-notify-icon"></span>
+            <span class="zu-global-notify-msg"></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="zu-global-notify" id="zh-global-message" style="display:none">
+    <div class="zg-wrap">
+        <div class="zu-global-nitify-inner">
+            <a class="zu-global-notify-close" href="javascript:" name="close" title="关闭">x</a>
+            <span class="zu-global-notify-icon"></span>
+            <span class="zu-global-notify-msg"></span>
+        </div>
+    </div>
+</div>
+<div class="zu-global-notify zu-global-notify-info" id="zh-question-redirect-info" style="display:none"></div>
+<div class="zu-global-notify zu-global-notify-info" id="zh-question-notification-summary" style="display:none;">
+    <div class="zg-wrap">
+        <div class="zu-global-nitify-inner">
+            <span class="zu-global-notify-icon"></span>
+            <ul class="zu-question-notify-wrap"></ul>
+        </div>
+    </div>
+</div>
+<div class="zg-wrap zu-main clearfix with-indention-votebar" data-urltoken="36301524" id="zh-single-question-page"
+     itemscope="" itemtype="http://schema.org/Question" role="main">
+    <div class="zu-main-content">
+        <div class="zu-main-content-inner">
+            <meta content="false" itemprop="isTopQuestion">
+            <meta content="402" itemprop="visitsCount">
+            <div class="zm-editable-status-normal" data-editable="true" id="zh-question-title">
+                <h2 class="zm-item-title">
+                    <span class="zm-editable-content" th:utext="${question.getTitle()}">title</span>
+                </h2>
+            </div>
+            <div class="zm-item-rich-text zm-editable-status-normal" data-action="/question/detail"
+                 data-resourceid="6727688"
+                 id="zh-question-detail">
+                <div class="zm-editable-content" th:utext="${question.getContent()}">content</div>
+            </div>
+            <div class="zm-side-section">
+                <div class="zm-side-section-inner" id="zh-question-side-header-wrap">
+                    <button th:if="${hasFollowed == 0}" class="follow-button zg-follow zg-btn-green js-follow-question"
+                            th:attr="data-id=${question.id},data-status=${hasFollowed}">
+                        关注问题
+                    </button>
+                    <button th:if="${hasFollowed == 1}" class="follow-button zg-follow zg-btn-white js-follow-question"
+                            th:attr="data-id=${question.id},data-status=${hasFollowed}">
+                        取消关注
+                    </button>
+                    <div class="zh-question-followers-sidebar">
+                        <div class="zg-gray-normal">
+                            <a href="">
+                                <strong class="js-user-count" th:text="${followerCount}">count</strong></a>人关注该问题
+                        </div>
+                        <div class="list zu-small-avatar-list zg-clear js-user-list">
+                            <a th:each="follower : ${followers}"
+                               th:class="'zm-item-link-avatar js-user-'+${follower.id}" data-original_title="奕奕"
+                               data-tip="p$b$yi-yi-98-91-99"
+                               th:href="@{'/user/'+${follower.id}}">
+                                <img class="zm-item-img-avatar"
+                                     th:src="${follower.headUrl}"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="zh-question-answer-wrapper navigable"
+                 data-init="{&quot;params&quot;: {&quot;url_token&quot;: 36301524, &quot;pagesize&quot;: 10, &quot;offset&quot;: 0}, &quot;nodename&quot;: &quot;QuestionAnswerListV2&quot;}"
+                 data-navigable-options="{&quot;items&quot;: &quot;&gt;.zm-item-answer&quot;}"
+                 data-pagesize="10" data-widget="navigable"
+                 id="zh-question-answer-wrap">
+                <div th:each="comment : ${comments}" class="zm-item-answer  zm-item-expanded js-comment"
+                     data-aid="22162611" data-atoken="66862039" data-collapsed="0"
+                     data-copyable="1" data-created="1444310527" data-deleted="0" data-helpful="1"
+                     data-isowner="0" data-za-module="AnswerItem" itemprop="topAnswer" itemscope=""
+                     itemtype="http://schema.org/Answer"
+                     tabindex="-1">
+                    <link href="" itemprop="url">
+                    <meta content="22162611" itemprop="answer-id">
+                    <meta content="66862039" itemprop="answer-url-token">
+                    <a class="zg-anchor-hidden" name="answer-22162611"></a>
+                    <div class="zm-votebar goog-scrollfloater js-vote" data-za-module="VoteBar"
+                         th:attr="data-id=${comment.get('comment').id}">
+                        <button th:if="${comment.get('status') == 1}" aria-pressed="false" class="up js-like pressed"
+                                title="赞同">
+                            <i class="icon vote-arrow"></i>
+                            <span class="count js-voteCount" th:text="${comment.get('likeCount')}">likeCount</span>
+                            <span class="label sr-only">赞同</span>
+                        </button>
+                        <button th:if="${comment.get('status') != 1}" aria-pressed="false" class="up js-like"
+                                title="赞同">
+                            <i class="icon vote-arrow"></i>
+                            <span class="count js-voteCount" th:text="${comment.get('likeCount')}">likeCount</span>
+                            <span class="label sr-only">赞同</span></button>
+                        <button th:if="${comment.get('status') == -1}" aria-pressed="false"
+                                class="down js-dislike pressed" title="反对，不会显示你的姓名">
+                            <i class="icon vote-arrow"></i>
+                            <span class="label sr-only">反对，不会显示你的姓名</span></button>
+                        <button th:if="${comment.get('status') != -1}" aria-pressed="false" class="down js-dislike"
+                                title="反对，不会显示你的姓名">
+                            <i class="icon vote-arrow"></i>
+                            <span class="label sr-only">反对，不会显示你的姓名</span></button>
+                    </div>
+                    <div class="answer-head">
+                        <div class="zm-item-answer-author-info">
+                            <a class="zm-item-link-avatar avatar-link" data-tip="p$t$yingxiaodao" href=""
+                               target="_blank">
+                                <img class="zm-list-avatar avatar"
+                                     th:src="${comment.get('user').headUrl}"></a>
+                            <a class="author-link" data-tip="p$t$yingxiaodao" href="" target="_blank"
+                               th:text="${comment.get('user').name}">author</a>
+                            <div class="zm-item-vote-info" data-votecount="28" data-za-module="VoteInfo">
+                                <span class="voters text">
+                                    <a class="more text" href="">
+                                        <span class="js-voteCount"
+                                              th:text="${comment.get('likeCount')}">likeCount</span>&nbsp;人赞同</a></span>
+                            </div>
+                        </div>
+                        <div class="zm-item-rich-text expandable js-collapse-body" data-action="/answer/content"
+                             data-author-name="营销岛" data-entry-url="/question/36301524/answer/66862039"
+                             data-resourceid="6727688">
+                            <div class="zm-editable-content clearfix" th:utext="${comment.get('comment').content}">
+                                content
+                            </div>
+                        </div>
+                        <a class="zg-anchor-hidden ac" name="22162611-comment"></a>
+                        <div class="zm-item-meta answer-actions clearfix js-contentActions">
+                            <div class="zm-meta-panel">
+                                <a class="answer-date-link meta-item" href="" itemprop="url" target="_blank">发布于
+                                    <span th:text="${#dates.format(comment.get('comment').createDate, 'yyyy/MM/dd HH:mm')}">createDate</span>
+                                </a>
+                                <a class="meta-item toggle-comment js-toggleCommentBox" href="" name="addcomment">
+                                    <i class="z-icon-comment"></i>4 条评论</a>
+                                <button class="item-collapse js-collapse" style="transition: none;">
+                                    <i class="z-icon-fold"></i>收起
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="zh-question-answer-wrapper" id="zh-question-collapsed-wrap" style="display:none"></div>
+                <a name="draft"></a>
+                <form action="/comment/add" method="post">
+                    <input type="hidden" name="questionId" th:value="${question.id}">
+                    <div id="zh-question-answer-form-wrap" class="zh-question-answer-form-wrap">
+                        <div class="zm-editable-editor-wrap" style="">
+                            <div class="zm-editable-editor-outer">
+                                <div class="zm-editable-editor-field-wrap">
+                                    <textarea name="content" id="content"
+                                              class="zm-editable-editor-field-element editable"
+                                              style="font-style: italic;width:100%;"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="zm-command clearfix">
+                            <span class=" zg-right">
+                                <button type="submit" class="submit-button zg-btn-blue">发布回答</button></span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:insert="footer.html"></div>
+</body>
+</html>

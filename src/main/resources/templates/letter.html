@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html class="is-AppPromotionBarVisible cssanimations csstransforms csstransitions flexbox no-touchevents no-mobile"
+      lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <title>私信列表</title>
+    <meta content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+          name="viewport">
+    <link href="../styles/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../styles/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link href="../styles/letter.css" media="all" rel="stylesheet">
+
+    <script src="../scripts/hm.js"></script>
+    <script src="../scripts/detail.js"></script>
+
+    <script src="../scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../scripts/jquery.qrcode.min.js" type="text/javascript"></script>
+</head>
+<body class="posts_show">
+<div th:insert="header.html"></div>
+<div class="zu-global-notify" id="zh-global-message" style="display:none">
+    <div class="zg-wrap">
+        <div class="zu-global-nitify-inner">
+            <a class="zu-global-notify-close" href="javascript:" name="close" title="关闭">x</a>
+            <span class="zu-global-notify-icon"></span>
+            <span class="zu-global-notify-msg"></span>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class="zg-wrap zu-main clearfix ">
+        <ul class="letter-list">
+            <li id="conversation-item-10005_622873" th:each="vo : ${vos}">
+                <a class="letter-link" th:href="@{'/msg/'+${vo.get('conversation').conversationId}}"></a>
+                <div class="letter-info">
+                    <span class="l-time" th:text="${#dates.format(vo.get('conversation').latestMessage.createDate,
+                          'yyyy/MM/dd HH:mm')}">createDate</span>
+                    <div class="l-operate-bar">
+                        <a class="sns-action-del" data-id="10005_622873" href="javascript:void(0);">
+                            删除
+                        </a>
+                        <a th:href="@{'/msg/'+${vo.get('conversation').conversationId}}">
+                            共<span th:text="${vo.get('conversation').messageCount}">count</span> 条会话
+                        </a>
+                    </div>
+                </div>
+                <div class="chat-headbox">
+                        <span class="msg-num" th:text="${vo.get('unReadCount')}">
+                            count
+                        </span>
+                    <a class="list-head">
+                        <img alt="头像" th:src="${vo.get('targetUser').headUrl}">
+                    </a>
+                </div>
+                <div class="letter-detail">
+                    <a class="letter-name level-color-1" th:text="${vo.get('targetUser').name}">
+                        name
+                    </a>
+                    <p class="letter-brief">
+                        <a th:href="@{'/msg/'+${vo.get('conversation').conversationId}}"
+                           th:utext="${vo.get('conversation').latestMessage.content}">
+                            content
+                        </a>
+                    </p>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<div th:insert="footer.html"></div>
+</body>
+</html>
